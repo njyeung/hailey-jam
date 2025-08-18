@@ -65,7 +65,9 @@ export default function App() {
             <Moon className='text-purple-800 dark:text-purple-400 w-14 h-14 sm:w-24 sm:h-24' size={100} />
           </motion.div>
         
-          <div className='select-none absolute bottom-0 left-1/2 -translate-x-1/2 text-center text-zinc-700 dark:text-zinc-600 text-xl md:text-3xl font-sans'> ✩ ₊ ˚ . ⋆ ☾ ⋆ ⁺ ₊ ✧</div>
+          <div className='select-none absolute bottom-0 left-1/2 -translate-x-1/2 text-center text-zinc-700 dark:text-zinc-600 text-lg sm:text-xl md:text-3xl font-sans'> 
+            ✩ ₊ ˚ . ⋆ ☾ ⋆ ⁺ ₊ ✧
+          </div>
         </div>
       </div>
       

@@ -37,6 +37,38 @@ export default function Awards({ onBack, darkmode }: AwardsProps) {
 
   const awards = [
     {
+      filePath: '/awards/2025 K-POP.pdf',
+      title: '2025 K-POP'
+    },
+    {
+      filePath: '/awards/2025 Kindergarten English Literacy Competition - CHAMPION.pdf',
+      title: '2025 Kindergarten English Literacy Competition - CHAMPION'
+    },
+    {
+      filePath: '/awards/Buddhist Wing Yan School - Certification of Attendance.pdf',
+      title: 'Buddhist Wing Yan School - Certification of Attendance'
+    },
+    {
+      filePath: '/awards/Certificate of Completed THE HONG KONG DISNEYLAND 10K WEEKEND 2024.pdf',
+      title: 'Certificate of Completed THE HONG KONG DISNEYLAND 10K WEEKEND 2024'
+    },
+    {
+      filePath: '/awards/Certificate of Completed World Vision GLOBAL 6K For WATER.pdf',
+      title: 'Certificate of Completed World Vision GLOBAL 6K For WATER'
+    },
+    {
+      filePath: '/awards/HKCYAA - 全港幼兒線上認字比賽 - 銅獎.pdf',
+      title: 'HKCYAA - 全港幼兒線上認字比賽 - 銅獎'
+    },
+    {
+      filePath: '/awards/IN STEP - SUMMER MV DANCE COURSE 2024.pdf',
+      title: 'IN STEP - SUMMER MV DANCE COURSE 2024'
+    },
+    {
+      filePath: '/awards/Junior Air Cadet Certificate.pdf',
+      title: 'Junior Air Cadet Certificate'
+    },
+    {
       filePath: '/awards/友邦嘉年華 2025 K-POP 無蹈表演.pdf',
       title: '友邦嘉年華 2025 K-POP 舞蹈表演'
     },
@@ -270,6 +302,367 @@ export default function Awards({ onBack, darkmode }: AwardsProps) {
         >☆</motion.span>
       </motion.div>
 
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '12%',
+          top: '150%',
+          transform: `translateY(${scrollY * -0.28}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-5xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -30, 20, 0],
+            y: [0, 15, -28, 0]
+          }}
+          transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut" }}
+        >★</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '8%',
+          top: '160%',
+          transform: `translateY(${scrollY * -0.35}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-4xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 25, -18, 0],
+            y: [0, -20, 30, 0]
+          }}
+          transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
+        >⟡</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '6%',
+          top: '170%',
+          transform: `translateY(${scrollY * -0.22}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-6xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -28, 35, 0],
+            y: [0, 22, -15, 0]
+          }}
+          transition={{ duration: 7.2, repeat: Infinity, ease: "easeInOut" }}
+        >☆</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '16%',
+          top: '180%',
+          transform: `translateY(${scrollY * -0.33}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-5xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 32, -24, 0],
+            y: [0, -25, 18, 0]
+          }}
+          transition={{ duration: 6.8, repeat: Infinity, ease: "easeInOut" }}
+        >✦</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '16%',
+          top: '190%',
+          transform: `translateY(${scrollY * -0.27}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-4xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -22, 28, 0],
+            y: [0, 30, -20, 0]
+          }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+        >★</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '6%',
+          top: '200%',
+          transform: `translateY(${scrollY * -0.31}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-6xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 38, -26, 0],
+            y: [0, -32, 20, 0]
+          }}
+          transition={{ duration: 8.2, repeat: Infinity, ease: "easeInOut" }}
+        >☆</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '10%',
+          top: '210%',
+          transform: `translateY(${scrollY * -0.24}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-5xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -26, 32, 0],
+            y: [0, 18, -25, 0]
+          }}
+          transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+        >⟡</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '12%',
+          top: '220%',
+          transform: `translateY(${scrollY * -0.29}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-4xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 24, -30, 0],
+            y: [0, -28, 22, 0]
+          }}
+          transition={{ duration: 7.4, repeat: Infinity, ease: "easeInOut" }}
+        >✦</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '8%',
+          top: '230%',
+          transform: `translateY(${scrollY * -0.34}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-6xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -34, 28, 0],
+            y: [0, 26, -18, 0]
+          }}
+          transition={{ duration: 5.9, repeat: Infinity, ease: "easeInOut" }}
+        >★</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '18%',
+          top: '240%',
+          transform: `translateY(${scrollY * -0.26}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-5xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 28, -22, 0],
+            y: [0, -24, 30, 0]
+          }}
+          transition={{ duration: 6.1, repeat: Infinity, ease: "easeInOut" }}
+        >☆</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '14%',
+          top: '250%',
+          transform: `translateY(${scrollY * -0.3}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-4xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -26, 32, 0],
+            y: [0, 20, -28, 0]
+          }}
+          transition={{ duration: 7.1, repeat: Infinity, ease: "easeInOut" }}
+        >⟡</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '10%',
+          top: '260%',
+          transform: `translateY(${scrollY * -0.32}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-6xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 36, -28, 0],
+            y: [0, -30, 22, 0]
+          }}
+          transition={{ duration: 8.4, repeat: Infinity, ease: "easeInOut" }}
+        >✦</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '12%',
+          top: '270%',
+          transform: `translateY(${scrollY * -0.25}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-5xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -30, 24, 0],
+            y: [0, 25, -20, 0]
+          }}
+          transition={{ duration: 6.3, repeat: Infinity, ease: "easeInOut" }}
+        >★</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '8%',
+          top: '280%',
+          transform: `translateY(${scrollY * -0.28}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-4xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 22, -34, 0],
+            y: [0, -26, 18, 0]
+          }}
+          transition={{ duration: 5.7, repeat: Infinity, ease: "easeInOut" }}
+        >☆</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '6%',
+          top: '290%',
+          transform: `translateY(${scrollY * -0.33}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-6xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -32, 26, 0],
+            y: [0, 28, -22, 0]
+          }}
+          transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
+        >⟡</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '16%',
+          top: '300%',
+          transform: `translateY(${scrollY * -0.27}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-5xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 34, -20, 0],
+            y: [0, -22, 28, 0]
+          }}
+          transition={{ duration: 6.7, repeat: Infinity, ease: "easeInOut" }}
+        >✦</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '18%',
+          top: '310%',
+          transform: `translateY(${scrollY * -0.29}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-4xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -24, 30, 0],
+            y: [0, 24, -18, 0]
+          }}
+          transition={{ duration: 8.1, repeat: Infinity, ease: "easeInOut" }}
+        >★</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          left: '6%',
+          top: '320%',
+          transform: `translateY(${scrollY * -0.31}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-6xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, 30, -26, 0],
+            y: [0, -28, 24, 0]
+          }}
+          transition={{ duration: 7.8, repeat: Infinity, ease: "easeInOut" }}
+        >☆</motion.span>
+      </motion.div>
+
+      <motion.div
+        className="fixed pointer-events-none z-10"
+        style={{
+          right: '10%',
+          top: '330%',
+          transform: `translateY(${scrollY * -0.26}px)`,
+        }}
+      >
+        <motion.span 
+          className="text-5xl dark:text-pink-300 text-purple-800"
+          animate={{ 
+            opacity: opacityRange,
+            x: [0, -28, 32, 0],
+            y: [0, 26, -20, 0]
+          }}
+          transition={{ duration: 6.9, repeat: Infinity, ease: "easeInOut" }}
+        >⟡</motion.span>
+      </motion.div>
+
       {/* Fixed circular back button */}
       <motion.button
         initial={{ x:-120 }}
@@ -283,7 +676,7 @@ export default function Awards({ onBack, darkmode }: AwardsProps) {
         <ArrowLeft size={24} />
       </motion.button>
       
-      <h1 className="mt-20 text-7xl text-white font-chewy text-center mb-8 relative z-20">My Awards</h1>
+      <h1 className="mt-32 mb-20 text-7xl md:text-8xl text-white font-chewy text-center relative z-20">My Awards</h1>
       
       <div className="flex-1 relative z-20">
         <div className="max-w-4xl mx-auto">
