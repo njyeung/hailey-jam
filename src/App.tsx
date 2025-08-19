@@ -6,6 +6,7 @@ import AboutMe from './components/AboutMe';
 import Activities from './components/Activities';
 import Awards from './components/Awards';
 import Gallery from './components/Gallery';
+import WaveTransition from './components/WaveTransition';
 
 
 export default function App() {
@@ -18,13 +19,32 @@ export default function App() {
 
   const [darkmode, setDarkmode] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'activities' | 'awards' | 'gallery'>('home');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [nextPage, setNextPage] = useState<'home' | 'about' | 'activities' | 'awards' | 'gallery'>('home');
+
+  const playClickSound = () => {
+    const audio = new Audio('/click.mp3');
+    audio.volume = 0.5;
+    audio.play().catch(err => console.log('Audio play failed:', err));
+  };
 
   const handlePageNavigation = (page: 'about' | 'activities' | 'awards' | 'gallery') => {
-    setCurrentPage(page);
+    if (isTransitioning) return;
+    playClickSound();
+    setNextPage(page);
+    setIsTransitioning(true);
   };
 
   const handleBackToHome = () => {
-    setCurrentPage('home');
+    if (isTransitioning) return;
+    playClickSound();
+    setNextPage('home');
+    setIsTransitioning(true);
+  };
+
+  const onTransitionComplete = () => {
+    setCurrentPage(nextPage);
+    setIsTransitioning(false);
   };
 
   const renderPage = () => {
@@ -60,7 +80,10 @@ export default function App() {
               ease: "easeInOut" 
             }}
             className='hover:cursor-pointer pointer-events-auto'
-            onClick={()=>{setDarkmode((prev)=>!prev)}}
+            onClick={()=>{
+              playClickSound();
+              setDarkmode((prev)=>!prev);
+            }}
           >
             <Moon className='text-purple-800 dark:text-purple-400 w-14 h-14 sm:w-24 sm:h-24' size={100} />
           </motion.div>
@@ -183,6 +206,7 @@ export default function App() {
     <div className={`${darkmode ? 'dark' : ''}`}>
       <div className="w-screen h-screen bg-purple-400 dark:bg-zinc-800 overflow-hidden relative">
         {renderPage()}
+        <WaveTransition isVisible={isTransitioning} onComplete={onTransitionComplete} darkMode={darkmode} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ChevronLeft, ChevronRight, X } from 'lucide-react';
 
@@ -6,39 +6,16 @@ interface GalleryProps {
   onBack: () => void;
 }
 
-interface LazyImageProps {
+interface ImageProps {
   src: string;
   alt: string;
   index: number;
   onClick: () => void;
 }
 
-function LazyImage({ src, alt, index, onClick }: LazyImageProps) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1, rootMargin: '50px' }
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
+function ImageComponent({ src, alt, index, onClick }: ImageProps) {
   return (
     <motion.div
-      ref={imgRef}
       onClick={onClick}
       className="relative aspect-square overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-700 hover:cursor-pointer"
       initial={{ opacity: 0, scale: 0.9 }}
@@ -46,31 +23,17 @@ function LazyImage({ src, alt, index, onClick }: LazyImageProps) {
       transition={{ duration: 0.3, delay: index * 0.05 }}
       viewport={{ once: true }}
     >
-      {isInView && (
-        <>
-          {!isLoaded && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-8 h-8 border-4 border-pink-300 border-t-transparent rounded-full animate-spin"></div>
-            </div>
-          )}
-          <img
-            src={src}
-            alt={alt}
-            className={`w-full h-full object-cover transition-opacity duration-300 ${
-              isLoaded ? 'opacity-100' : 'opacity-0'
-            }`}
-            onLoad={() => setIsLoaded(true)}
-            loading="lazy"
-          />
-        </>
-      )}
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-full object-cover"
+      />
     </motion.div>
   );
 }
 
 export default function Gallery({ onBack }: GalleryProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const [modalImageLoaded, setModalImageLoaded] = useState(false);
 
   // Generate array of all images (excluding image_03.jpg)
   const images = Array.from({ length: 60 }, (_, i) => i + 1)
@@ -82,25 +45,21 @@ export default function Gallery({ onBack }: GalleryProps) {
 
   const handleImageClick = (index: number) => {
     setSelectedImageIndex(index);
-    setModalImageLoaded(false); // Reset loading state when opening new image
   };
 
   const handleCloseModal = () => {
     setSelectedImageIndex(null);
-    setModalImageLoaded(false);
   };
 
   const handlePrevImage = () => {
     if (selectedImageIndex !== null) {
       setSelectedImageIndex(selectedImageIndex > 0 ? selectedImageIndex - 1 : images.length - 1);
-      setModalImageLoaded(false); // Reset loading state when changing image
     }
   };
 
   const handleNextImage = () => {
     if (selectedImageIndex !== null) {
       setSelectedImageIndex(selectedImageIndex < images.length - 1 ? selectedImageIndex + 1 : 0);
-      setModalImageLoaded(false); // Reset loading state when changing image
     }
   };
 
@@ -160,9 +119,9 @@ export default function Gallery({ onBack }: GalleryProps) {
       </h1>
 
       <div className="flex-1 max-w-md sm:max-w-xl md:max-w-3xl xl:max-w-5xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image, index) => (
-            <LazyImage
+            <ImageComponent
               key={index}
               src={image.src}
               alt={image.alt}
@@ -235,15 +194,12 @@ export default function Gallery({ onBack }: GalleryProps) {
                 src={images[selectedImageIndex].src}
                 alt={images[selectedImageIndex].alt}
                 className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
-                onLoad={() => setModalImageLoaded(true)}
               />
 
-              {/* Image counter - only show when image is loaded */}
-              {modalImageLoaded && (
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm">
-                  {selectedImageIndex + 1} / {images.length}
-                </div>
-              )}
+              {/* Image counter */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm">
+                {selectedImageIndex + 1} / {images.length}
+              </div>
             </motion.div>
           </motion.div>
         )}
