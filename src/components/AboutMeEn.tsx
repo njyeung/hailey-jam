@@ -137,7 +137,7 @@ export default function AboutMeEn({ onBack, onToggleLanguage, onNavigateToAwards
               <div className="text-lg text-zinc-600 dark:text-zinc-300 space-y-1">
                 <p><strong>Date of Birth: March 15, 2019</strong></p>
                 <p><strong>Age: 5 years old</strong></p>
-                <p><strong>Location: Central & Western District, Hong Kong Island</strong></p>
+                <p><strong>Location: Flat/Rm G, 18/F, Tower 2, Residence 88, 88 Fung Cheung Rd, Yuen Long</strong></p>
               </div>
               <p className="mt-3 text-zinc-700 dark:text-zinc-200 text-base leading-relaxed">
                 I am a curious and creative little girl who loves drawing, crafting, and playing with small animals. I hope to make more friends and learn new knowledge at my new school!

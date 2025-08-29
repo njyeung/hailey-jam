@@ -133,11 +133,11 @@ export default function AboutMeCn({ onBack, onToggleLanguage, onNavigateToAwards
               <img src="/pfp.jpg" alt="學生照片" className="w-full h-full object-cover" />
             </div>
             <div className="text-center md:text-left flex-1">
-              <h2 className="text-3xl font-chewy text-zinc-800 dark:text-white mb-2">陳海莉</h2>
+              <h2 className="text-3xl font-chewy text-zinc-800 dark:text-white mb-2">詹希璇</h2>
               <div className="text-lg text-zinc-600 dark:text-zinc-300 space-y-1">
                 <p><strong>出生日期: 2019年3月15日</strong></p>
                 <p><strong>年齡: 5歲</strong></p>
-                <p><strong>居住地區: 香港島中西區</strong></p>
+                <p><strong>居住地區: 元朗豐祥路88號Residence 88第二座18樓G室</strong></p>
               </div>
               <p className="mt-3 text-zinc-700 dark:text-zinc-200 text-base leading-relaxed">
                 我是一個充滿好奇心和創意的小女孩，喜歡畫畫、做手工，也愛和小動物玩耍。我希望在新學校裡交到更多朋友，學到更多新知識！
