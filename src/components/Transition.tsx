@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface WaveTransitionProps {
+interface TransitionProps {
   isVisible: boolean;
   onComplete?: () => void;
   darkMode?: boolean;
 }
 
-export default function WaveTransition({ isVisible, onComplete, darkMode = false }: WaveTransitionProps) {
+export default function Transition({ isVisible, onComplete, darkMode = false }: TransitionProps) {
   const backgroundClass = darkMode 
     ? "bg-zinc-800"
     : "bg-purple-400";

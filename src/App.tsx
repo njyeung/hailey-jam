@@ -6,7 +6,7 @@ import AboutMe from './components/AboutMe';
 import Activities from './components/Activities';
 import Awards from './components/Awards';
 import Gallery from './components/Gallery';
-import WaveTransition from './components/WaveTransition';
+import Transition from './components/Transition';
 
 
 export default function App() {
@@ -35,6 +35,10 @@ export default function App() {
     setIsTransitioning(true);
   };
 
+  const handleNavigateToAwards = () => {
+    handlePageNavigation('awards');
+  };
+
   const handleBackToHome = () => {
     if (isTransitioning) return;
     playClickSound();
@@ -50,7 +54,7 @@ export default function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'about':
-        return <AboutMe onBack={handleBackToHome} />;
+        return <AboutMe onBack={handleBackToHome} onNavigateToAwards={handleNavigateToAwards} />;
       case 'activities':
         return <Activities onBack={handleBackToHome} />;
       case 'awards':
@@ -88,7 +92,7 @@ export default function App() {
             <Moon className='text-purple-800 dark:text-purple-400 w-14 h-14 sm:w-24 sm:h-24' size={100} />
           </motion.div>
         
-          <div className='select-none absolute bottom-0 left-1/2 -translate-x-1/2 text-center text-zinc-700 dark:text-zinc-600 text-lg sm:text-xl md:text-3xl font-sans'> 
+          <div className='select-none absolute -bottom-5 left-1/2 -translate-x-1/2 text-center text-zinc-700 dark:text-zinc-600 text-lg sm:text-xl md:text-3xl font-sans'> 
             ✩ ₊ ˚ . ⋆ ☾ ⋆ ⁺ ₊ ✧
           </div>
         </div>
@@ -206,7 +210,7 @@ export default function App() {
     <div className={`${darkmode ? 'dark' : ''}`}>
       <div className="w-screen h-screen bg-purple-400 dark:bg-zinc-800 overflow-hidden relative">
         {renderPage()}
-        <WaveTransition isVisible={isTransitioning} onComplete={onTransitionComplete} darkMode={darkmode} />
+        <Transition isVisible={isTransitioning} onComplete={onTransitionComplete} darkMode={darkmode} />
       </div>
     </div>
   );

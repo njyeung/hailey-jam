@@ -676,24 +676,22 @@ export default function Awards({ onBack, darkmode }: AwardsProps) {
         <ArrowLeft size={24} />
       </motion.button>
       
-      <h1 className="mt-32 mb-20 text-7xl md:text-8xl text-white font-chewy text-center relative z-20">My Awards</h1>
+      <h1 className="mt-32 mb-12 text-7xl md:text-8xl text-white font-chewy text-center relative z-20">
+        My Awards
+      </h1>
       
       <div className="flex-1 relative z-20">
         <div className="max-w-4xl mx-auto">
           {awards.map((award, index) => (
-            <motion.div 
+            <div 
               key={index}
               className='my-12'
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true, margin: "-100px" }}
             >
               <PDFViewer
                 filePath={award.filePath}
                 title={award.title}
               />
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -6,31 +6,6 @@ interface GalleryProps {
   onBack: () => void;
 }
 
-interface ImageProps {
-  src: string;
-  alt: string;
-  index: number;
-  onClick: () => void;
-}
-
-function ImageComponent({ src, alt, index, onClick }: ImageProps) {
-  return (
-    <motion.div
-      onClick={onClick}
-      className="relative aspect-square overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-700 hover:cursor-pointer"
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3, delay: index * 0.05 }}
-      viewport={{ once: true }}
-    >
-      <img
-        src={src}
-        alt={alt}
-        className="w-full h-full object-cover"
-      />
-    </motion.div>
-  );
-}
 
 export default function Gallery({ onBack }: GalleryProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
@@ -121,13 +96,17 @@ export default function Gallery({ onBack }: GalleryProps) {
       <div className="flex-1 max-w-md sm:max-w-xl md:max-w-3xl xl:max-w-5xl mx-auto w-full relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((image, index) => (
-            <ImageComponent
+            <div
               key={index}
-              src={image.src}
-              alt={image.alt}
-              index={index}
               onClick={() => handleImageClick(index)}
-            />
+              className="relative aspect-square overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-700 hover:cursor-pointer"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -148,7 +127,7 @@ export default function Gallery({ onBack }: GalleryProps) {
                 e.stopPropagation();
                 handleCloseModal();
               }}
-              className="fixed top-8 right-8 md:top-16 md:right-16 z-10 w-10 h-10 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full flex items-center justify-center transition-all"
+              className="fixed top-8 right-8 md:top-10 md:right-10 z-10 w-10 h-10 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full flex items-center justify-center transition-all"
             >
               <X size={20} />
             </button>
