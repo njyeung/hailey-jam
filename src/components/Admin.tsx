@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { X, Plus, LogIn, Loader2, RefreshCw } from 'lucide-react';
 
 const API_BASE = 'https://api.haileyjam.com';
-const CDN_BASE = 'https://cdn.haileyjam.com';
+const CDN_BASE = 'https://cdn.haileyjam.nickjyeung.dev';
 
 interface ManifestEntry {
   id: string;
