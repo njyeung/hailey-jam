@@ -47,6 +47,18 @@ export default {
 async function route(request, url, env) {
   const { pathname } = url;
 
+  if (pathname === "/whoami" && request.method === "GET") {
+    return json({
+      email: request.headers.get("Cf-Access-Authenticated-User-Email"),
+    });
+  }
+
+  if (pathname === "/signed-in" && request.method === "GET") {
+    return signedInPage(
+      request.headers.get("Cf-Access-Authenticated-User-Email"),
+    );
+  }
+
   if (pathname === "/images" && request.method === "POST") {
     return uploadImage(request, env);
   }
@@ -56,7 +68,41 @@ async function route(request, url, env) {
     return deleteImage(idMatch[1], env);
   }
 
+  if (pathname === "/manifest" && request.method === "PUT") {
+    return reorderManifest(request, env);
+  }
+
   return json({ error: "not found" }, 404);
+}
+
+async function reorderManifest(request, env) {
+  const body = await request.json().catch(() => null);
+  if (!body || !Array.isArray(body.order)) {
+    return json({ error: "expected { order: [id, ...] }" }, 400);
+  }
+  const orderIds = body.order;
+
+  try {
+    await mutateManifest(env, (entries) => {
+      if (orderIds.length !== entries.length) {
+        throw new Error(
+          `order length ${orderIds.length} does not match manifest length ${entries.length}`,
+        );
+      }
+      const byId = new Map(entries.map((e) => [e.id, e]));
+      const next = [];
+      for (const id of orderIds) {
+        const entry = byId.get(id);
+        if (!entry) throw new Error(`unknown id: ${id}`);
+        next.push(entry);
+      }
+      return next;
+    });
+  } catch (err) {
+    return json({ error: err.message }, 400);
+  }
+
+  return json({ reordered: true });
 }
 
 async function uploadImage(request, env) {
@@ -140,7 +186,7 @@ async function mutateManifest(env, updateFn) {
 function corsHeaders(origin) {
   return {
     "Access-Control-Allow-Origin": origin,
-    "Access-Control-Allow-Methods": "POST, DELETE, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Allow-Credentials": "true",
     Vary: "Origin",
@@ -151,5 +197,60 @@ function json(data, status = 200, extra = {}) {
   return new Response(JSON.stringify(data), {
     status,
     headers: { "Content-Type": "application/json", ...extra },
+  });
+}
+
+function signedInPage(email) {
+  const safeEmail = (email ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Signed in</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  html, body { height: 100%; margin: 0; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #c084fc; color: #27272a;
+  }
+  .card {
+    background: #fff; border-radius: 1rem; padding: 2.5rem 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center; max-width: 28rem;
+  }
+  h1 { margin: 0 0 0.75rem; font-size: 1.75rem; }
+  p { margin: 0.5rem 0; color: #52525b; line-height: 1.5; }
+  .email { font-family: monospace; color: #18181b; }
+  button {
+    margin-top: 1.5rem; padding: 0.75rem 1.5rem; border: none;
+    border-radius: 9999px; background: #ec4899; color: #fff;
+    font-weight: 600; font-size: 1rem; cursor: pointer;
+  }
+  button:hover { background: #db2777; }
+  .check {
+    width: 3rem; height: 3rem; margin: 0 auto 1rem;
+    border-radius: 9999px; background: #d1fae5; color: #059669;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.75rem;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="check">&#10003;</div>
+    <h1>You're signed in!</h1>
+    <p>Signed in as <span class="email">${safeEmail}</span></p>
+    <p>You can close this tab and head back to the admin page &mdash; it'll refresh on its own.</p>
+    <button onclick="window.close()">Close tab</button>
+  </div>
+</body>
+</html>`;
+  return new Response(html, {
+    status: 200,
+    headers: { "Content-Type": "text/html; charset=utf-8" },
   });
 }

@@ -203,6 +203,13 @@ export default function App() {
             </div>
           </div>
       </div>
+
+      <a
+        href="/admin"
+        className="absolute underline bottom-3 right-4 text-xs text-zinc-600 hover:text-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-400 transition-colors z-30"
+      >
+        admin
+      </a>
     </>
   );
 
