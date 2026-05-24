@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import ImageModal from './ImageModal';
 
-const CDN_BASE = 'https://cdn.haileyjam.nickjyeung.dev';
+const CDN_BASE = 'https://cdn.haileyjam.com';
 
 interface ManifestEntry {
   id: string;

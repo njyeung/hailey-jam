@@ -11,7 +11,7 @@ bucket_name = "hailey-jam"
 ALLOWED_ORIGINS = "https://haileyjam.com,https://www.haileyjam.com,http://localhost:3000"
 
 [[routes]]
-pattern = "api.haileyjam.nickjyeung.dev"
+pattern = "api.haileyjam.com"
 custom_domain = true
 
 

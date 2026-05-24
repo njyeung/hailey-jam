@@ -1,7 +1,7 @@
 // Cloudflare Worker for managing the gallery R2 bucket.
 //
 // Public image reads go directly to the bucket's custom domain
-// (cdn.haileyjam.nickjyeung.dev). This worker only handles mutations
+// (cdn.haileyjam.com). This worker only handles mutations
 // and is intended to sit behind Cloudflare Access.
 
 const MANIFEST_KEY = "manifest.json";

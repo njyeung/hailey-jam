@@ -22,6 +22,7 @@ export default function App() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkmode);
   }, [darkmode]);
+  
   const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'activities' | 'awards' | 'gallery'>('home');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [nextPage, setNextPage] = useState<'home' | 'about' | 'activities' | 'awards' | 'gallery'>('home');
