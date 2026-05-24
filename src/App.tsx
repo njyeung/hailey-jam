@@ -22,15 +22,15 @@ export default function App() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [nextPage, setNextPage] = useState<'home' | 'about' | 'activities' | 'awards' | 'gallery'>('home');
 
-  const playClickSound = () => {
-    const audio = new Audio('/click.mp3');
+  const playSound = (src: string) => {
+    const audio = new Audio(src);
     audio.volume = 0.5;
     audio.play().catch(err => console.log('Audio play failed:', err));
   };
 
   const handlePageNavigation = (page: 'about' | 'activities' | 'awards' | 'gallery') => {
     if (isTransitioning) return;
-    playClickSound();
+    playSound('/pop.mp3');
     setNextPage(page);
     setIsTransitioning(true);
   };
@@ -41,7 +41,7 @@ export default function App() {
 
   const handleBackToHome = () => {
     if (isTransitioning) return;
-    playClickSound();
+    playSound('/click.mp3');
     setNextPage('home');
     setIsTransitioning(true);
   };
@@ -85,7 +85,7 @@ export default function App() {
             }}
             className='hover:cursor-pointer pointer-events-auto'
             onClick={()=>{
-              playClickSound();
+              playSound('/click.mp3');
               setDarkmode((prev)=>!prev);
             }}
           >

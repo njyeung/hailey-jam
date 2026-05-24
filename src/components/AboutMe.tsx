@@ -19,6 +19,9 @@ export default function AboutMe({ onBack, onNavigateToAwards }: AboutMeProps) {
   }, []);
 
   const toggleLanguage = () => {
+    const audio = new Audio('/click.mp3');
+    audio.volume = 0.5;
+    audio.play().catch(err => console.log('Audio play failed:', err));
     const newIsEnglish = !isEnglish;
     setIsEnglish(newIsEnglish);
     // Save language preference to localStorage
