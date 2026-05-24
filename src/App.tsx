@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Cloud from './components/Cloud';
 import Moon from './components/Moon';
@@ -18,6 +18,10 @@ export default function App() {
   ];
 
   const [darkmode, setDarkmode] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', darkmode);
+  }, [darkmode]);
   const [currentPage, setCurrentPage] = useState<'home' | 'about' | 'activities' | 'awards' | 'gallery'>('home');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [nextPage, setNextPage] = useState<'home' | 'about' | 'activities' | 'awards' | 'gallery'>('home');
