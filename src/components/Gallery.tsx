@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Loader2 } from 'lucide-react';
 import ImageModal from './ImageModal';
+
+const CDN_BASE = 'https://cdn.haileyjam.nickjyeung.dev';
+
+interface ManifestEntry {
+  id: string;
+  filename: string;
+  uploadedAt: string;
+}
 
 interface GalleryProps {
   onBack: () => void;
@@ -10,14 +18,29 @@ interface GalleryProps {
 
 export default function Gallery({ onBack }: GalleryProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [images, setImages] = useState<{ src: string; alt: string }[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Generate array of all images (excluding image_03.jpg)
-  const images = Array.from({ length: 60 }, (_, i) => i + 1)
-    .filter(num => num !== 3) // Skip image_03.jpg
-    .map(num => ({
-      src: `/gallery/image_${String(num).padStart(2, '0')}.jpg`,
-      alt: `Gallery image ${num}`
-    }));
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`${CDN_BASE}/manifest.json?t=${Date.now()}`);
+        if (!res.ok) throw new Error(`failed to load gallery (${res.status})`);
+        const entries: ManifestEntry[] = await res.json();
+        setImages(
+          entries.map((entry) => ({
+            src: `${CDN_BASE}/${entry.filename}`,
+            alt: 'Hailey gallery',
+          })),
+        );
+      } catch (err) {
+        setError(err instanceof Error ? err.message : String(err));
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
 
   const handleImageClick = (index: number) => {
     setSelectedImageIndex(index);
@@ -77,21 +100,32 @@ export default function Gallery({ onBack }: GalleryProps) {
       </h1>
 
       <div className="flex-1 max-w-md sm:max-w-xl md:max-w-3xl xl:max-w-5xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              onClick={() => handleImageClick(index)}
-              className="relative aspect-square overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-700 cursor-pointer hover:opacity-80 transition-opacity"
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex justify-center py-20 text-white/80">
+            <Loader2 className="animate-spin" size={40} />
+          </div>
+        ) : error ? (
+          <div className="text-center py-20 text-white/90 font-chewy text-xl">
+            Couldn't load the gallery — {error}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                onClick={() => handleImageClick(index)}
+                className="relative aspect-square overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-700 cursor-pointer hover:opacity-80 transition-opacity"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <ImageModal
