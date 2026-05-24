@@ -303,6 +303,12 @@ export default function Admin() {
             </button>
           </div>
         )}
+        <a
+        href="/"
+        className="block mt-5 w-full text-right text-xs text-zinc-600 hover:text-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-400 transition-colors z-30"
+        >
+          back to home
+        </a>
       </div>
     </div>
   );
