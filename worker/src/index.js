@@ -244,7 +244,7 @@ function signedInPage(email) {
     <div class="check">&#10003;</div>
     <h1>You're signed in!</h1>
     <p>Signed in as <span class="email">${safeEmail}</span></p>
-    <p>You can close this tab and head back to the admin page &mdash; it'll refresh on its own.</p>
+    <p>You can close this tab and head back to the admin page.</p>
     <button onclick="window.close()">Close tab</button>
   </div>
 </body>

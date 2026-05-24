@@ -130,7 +130,7 @@ export default function AboutMeEn({ onBack, onToggleLanguage, onNavigateToAwards
         >
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-pink-400">
-              <img src="/pfp.jpg" alt="Student photo" className="w-full h-full object-cover" />
+              <img src="/pfp.jpg" alt="Hailey Jam" className="w-full h-full object-cover" />
             </div>
             <div className="text-center md:text-left flex-1">
               <h2 className="text-3xl font-chewy text-zinc-800 dark:text-white mb-2">Hailey Jam</h2>
@@ -376,7 +376,7 @@ export default function AboutMeEn({ onBack, onToggleLanguage, onNavigateToAwards
           <div className="flex flex-wrap gap-3 mb-4">
             {familyImages.map((img, index) => (
               <div key={index} className="w-20 h-20 rounded-lg overflow-hidden bg-zinc-200 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => handleFamilyImageClick(index)}>
-                <img src={img} alt="Family photo" className="w-full h-full object-cover" />
+                <img src={img} alt="Hailey with family" className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
