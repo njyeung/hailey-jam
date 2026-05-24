@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: #c084fc; /* purple-400, matches app light bg */
+  overscroll-behavior: none;
+}
+
+html.dark, html.dark body {
+  background-color: #27272a; /* zinc-800, matches app dark bg */
+}
+
 /* Custom text selection highlighting */
 ::selection {
   background-color: rgb(251 182 206); /* pink-200 */

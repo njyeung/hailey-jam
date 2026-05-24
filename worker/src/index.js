@@ -54,6 +54,10 @@ async function route(request, url, env) {
   }
 
   if (pathname === "/signed-in" && request.method === "GET") {
+    const returnTo = url.searchParams.get("return");
+    if (returnTo && isAllowedReturnUrl(returnTo, env)) {
+      return Response.redirect(returnTo, 302);
+    }
     return signedInPage(
       request.headers.get("Cf-Access-Authenticated-User-Email"),
     );
@@ -181,6 +185,17 @@ async function mutateManifest(env, updateFn) {
     if (result) return next;
   }
   throw new Error("manifest update failed after retries");
+}
+
+function isAllowedReturnUrl(returnTo, env) {
+  let parsed;
+  try {
+    parsed = new URL(returnTo);
+  } catch {
+    return false;
+  }
+  const allowed = (env.ALLOWED_ORIGINS ?? "").split(",").map((s) => s.trim());
+  return allowed.includes(parsed.origin);
 }
 
 function corsHeaders(origin) {

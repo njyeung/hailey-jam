@@ -63,19 +63,6 @@ export default function Admin() {
     })();
   }, [checkAuth, loadManifest]);
 
-  // While on the sign-in screen, poll so we transition out automatically once
-  // the user completes the Access flow in another tab.
-  useEffect(() => {
-    if (!needsAuth) return;
-    const interval = setInterval(async () => {
-      if (await checkAuth()) {
-        setNeedsAuth(false);
-        loadManifest();
-      }
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [needsAuth, checkAuth, loadManifest]);
-
   const handleUpload = async (files: FileList) => {
     setUploading(true);
     setError(null);
@@ -193,17 +180,11 @@ export default function Admin() {
             Open the sign-in page, enter your email and authorize with the code that is sent to you.
           </p>
           <a
-            href={`${API_BASE}/signed-in`}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`${API_BASE}/signed-in?return=${encodeURIComponent(window.location.href)}`}
             className="inline-block px-6 py-3 rounded-full bg-pink-500 text-white font-semibold hover:bg-pink-600 transition-colors"
           >
-            Open sign-in →
+            Sign in →
           </a>
-          <div className="flex items-center justify-center gap-2 mt-4 text-sm text-zinc-400">
-            <Loader2 size={14} className="animate-spin" />
-            Waiting for sign-in…
-          </div>
         </div>
       </div>
     );
